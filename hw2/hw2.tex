@@ -1,0 +1,298 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{euler}
+\usepackage{eulervm}
+\usepackage{graphics}
+\usepackage[all,cmtip]{xy}
+%\usepackage{diagxy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+
+
+\parskip=0em
+\parindent=0em
+
+\sloppy
+\voffset=-20mm
+\textheight=235mm
+\hoffset=-25mm
+\textwidth=180mm
+\headsep=12pt
+\footskip=20pt
+
+\setcounter{page}{0}
+\pagestyle{empty}
+
+% Основные математические символы
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\heart}{\mathalpha}{extraup}{86}
+\def\TODO{{\color{red}\bf TODO}}
+\def\N{\mathbb{N}}       %
+\def\R{\mathbb{R}}       %
+\def\Z{\mathbb{Z}}       %
+\def\INF{\t{+}\infty}    % +inf
+\def\EPS{\varepsilon}    %
+\def\EMPTY{\varnothing}  %
+\def\PHI{\varphi}        %
+\def\ar{\rightarrow}     % ->
+\def\l{\backslash}       % \
+\def\SO{\Rightarrow}     % =>
+\def\EQ{\Leftrightarrow} % <=>
+\def\t{\texttt}          % mono font
+\def\O{\mathcal{O}}      %
+\def\NO{\t{\#}}          % #
+\def\XOR{\text{ {\raisebox{-2pt}{\ensuremath{\Hat{}}}} }}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\newcommand{\q}[1]{\langle #1 \rangle}               % <x>
+\newcommand\URL[1]{{\footnotesize{\url{#1}}}}        %
+\newcommand{\sfrac}[2]{{\scriptstyle\frac{#1}{#2}}}  % Очень маленькая дробь
+\newcommand{\mfrac}[2]{{\textstyle\frac{#1}{#2}}}    % Небольшая дробь
+
+\newcommand{\fix}[1]{{\color{red}#1}}
+
+\newcommand{\score}[1]{{\bf\color{red}{(#1)}}}
+
+% Отступы
+\def\makeparindent{\hspace*{\parindent}}
+\def\up{\vspace*{-0.3em}}
+\def\down{\vspace*{0.3em}}
+\def\LINE{\vspace*{-1em}\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}}
+%\def\up{\vspace*{-\baselineskip}}
+
+\lfoot{}
+\cfoot{\thepage\t{/}\pageref*{LastPage}}
+\rfoot{}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[1.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{MyList0}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{InnerMyList}[1][0pt]{
+  \vspace*{-0.5em}
+  \begin{enumerate}[a)]
+  \setlength{\parskip}{#1}
+  \setlength{\itemsep}{0pt}
+}{
+  \end{enumerate}
+}
+
+\newcommand{\Section}[1]{
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{\arabic{section}. #1} 
+  %{\LARGE \bf \arabic{section}. #1} 
+  {\LARGE \bf #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+\newcommand{\Subsection}[1]{
+  \refstepcounter{subsection}
+  \addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection}. #1} 
+  {\Large \bf \arabic{section}.\arabic{subsection}. #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+
+\newcommand{\lra}{\Longleftrightarrow}
+\newcommand{\ra}{\Longrightarrow}
+\newcommand{\ds}{\displaystyle}
+
+
+
+\newcommand{\ta}{\!\rightarrow\!}
+\newcommand{\tr}{\!:\!}
+\newcommand{\Tr}{:}
+
+% канонические комбинаторы Y, S, K, I, etc
+\newcommand{\canonComb}[1]{\boldsymbol{#1}}
+% обычные комбинаторы fac, mult, etc
+\newcommand{\comb}[1]{\mathtt{#1}} %% \mathsf
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\textbf{Курс: Функциональное программирование}
+
+\textbf{Домашнее задание 2}
+
+\textbf{Тигиной Марии 2 группа}
+\end{center}
+
+\bigskip
+
+\bigskip
+
+
+
+
+%-------------------------------------------------------------------------------------
+
+
+\begin{MyList0}[8pt]
+
+\item Приведите пример терма(замкнутого) который бы:
+\begin{enumerate}[a)]
+\item Находился в WHNF, но не в HNF.\\
+$\l x \ar (\l y \ar yy) x$\\
+(1 балл)\\
+
+\item Находился бы в HNF, но не в NF.\\
+$\l x \ar x ((\l y \ar y)x) $\\
+(1 балл)\\
+\end{enumerate}
+\end{MyList0}
+
+\begin{MyList}[8pt]
+
+\item Напишите следующие функции над числами Чёрча:
+\begin{enumerate}[a)]
+\item Сравнения m <= n:\\
+$le = \l m\; n\; \ar iszero\; (minus\; a\; b)$\\
+(1 балл)
+
+\item Сравнения m >= n:\\
+$ge = \l m\; n\; \ar iszero\; (minus\; b\; a)$\\
+(1 балл)
+
+\item Сравнения m < n:\\
+$lt = \l m\; n\; \ar le\; (succ\; a)\; b$\\
+(1 балл)
+
+\item Сравнения m > n:\\
+$gt = \l m\; n\; \ar ge\; a\; (succ\; b)$\\
+(1 балл)
+
+\item Проверка на равенство m == n:\\
+$equals = \l m\; n\; \ar and\; (le\; a\; b)\; (ge\; a\; b)$\\
+(1 балл)
+
+\item Функцию, суммирующую числа от 0 до n(комбинатором неподвижной точки пользоваться нельзя):\\
+$sum = \l n\; \ar rec\; \l n\; (\l x\; y\; \ar plus\; x\; (succ\; y))\; \overline{1} $\\
+(1 балл)
+
+\end{enumerate}\\
+
+
+\item Напишите предикат $isEven$, возвращающий $tru$, если его аргумент четное число и $fls$ – в противном случае. В этом задании нельзя использовать комбинатор неподвижной точки.\\
+$isEven = \l m\; \ar rec\; m\; (\l x\; y\; \ar not\; x)\; tru$\\
+(2 балла)\\
+
+\item Напишите следующие функции над списками. Комбинатором неподвижной точки пользоваться нельзя
+\begin{enumerate}[a)]
+
+\item length – длина списка\\
+$length = \l l \ar l\; (\l x\; \ar  succ)\; \overline{0} $\\
+(1 балл)
+
+\item sum – сумма элементов списка\\
+$sum = \l l\; \ar (\l x\; \ar plus\; x)\; \overline{0}  $\\
+(1 балл)
+
+\item применяет функцию $f$ ко всем элементам списка $map succ [1, 2, 3] = [2, 3, 4]$\\
+$map = \l f\; l \ar (\l x\; \ar cons\; (f\; x))\; nil$\\
+(1 балл)
+
+\item reverse – разворачивает список. $reverse [1,2,3] = [3,2,1]$\\
+$push = \l x\; l \ar l\; cons\; (cons\; x\; nil)\;$\\
+$reverse = \l l \ar l\; push\;  nil$\\
+(2 балла)
+
+\item tail – хвост списка. $tail [1, 2, 3] = [2, 3].$\\
+Обозначим: $pair\;x\;y = (x,\; y)$\\
+$tail = \l l \ar snd(l(\l x\; p \ar (cons\; x (fst\; p),\; fst(p))(nil,\; nil)))$\\
+(2 балла)
+\end{enumerate}\\
+
+\item Используя комбинатор неподвижной точки найдите терм $F$ такой что:
+\begin{enumerate}[a)]
+\item Для любого $M$ было бы верно $F$ $M$ = $M$ $F$\\
+$F\; M = (\l f\; x \ar x\; f) F\; M$\\
+$F = (\l f\; x \ar x\; f)\; F $\\
+$F = Y(\l f\; x \ar x\; f)$\\
+(1 балла)
+
+\item Для любых $M$ и $N$ было бы верно $F\; M\; N\; = N\; F\; (M\; N\; F)$\\
+$F\; M\; N\; = (\l f\; x\; y \ar x\; f(x\; y\; f))F\; M\; N\;$\\
+$F\; = (\l f\; x\; y \ar x\; f(x\; y\; f))\;F$\\
+$F = Y(\l f\; x\; y \ar x\; f(x\; y\; f))$\\
+(1 балла)
+
+\end{enumerate}\\
+
+\item Пусть $f$ и $g$ определены взаимно-рекурсивно:\\
+$f=Ffg$\\
+$g=Gfg$\\
+Используя комбинатор неподвижной точки найдите нерекурсивные определения функций $f$ и $g$\\
+$f=(\l x \ar F\;x\;g)f = Y(\l x \ar F\;x\;g)$\\
+$g=(\l y \ar G\;f\;y)g = (\l y \ar G\;(Y(\l x \ar F\;x\;y))y)\;g =  Y(\l y \ar G\;(Y(\l x \ar F\;x\;y))y)$\\
+(2 балла)
+
+\item Докажите, что ваше определение $reverse$ является инволюцией для любого конечного списка. То есть $reverse\; (reverse\; xs)\; =\; xs$ для любого конечного списка $xs$.\\
+Пусть $xs = cons\; a_1( cons\; a_2( cons\; a_3(...(cons\; a_n\; nil)..)$\\
+Тогда после применения $xs\; push\; nill$ список станет иметь вид:\\
+$reverse\; xs = push\; a_1( push\; a_2( push\; a_3(...(push\; a_n nil)..)$\\
+Докажем, что такое выражение правда переворачивает нам список\\
+База(для одного элемента):\\
+$push\; a\; nil\\
+= (\l x\; l \ar l\; cons\; (cons\; x\; nil))\; a\; nil \;\\
+= nil\; cons\; (cons\; a\; nil)\\
+= cons\; a\; nil$\\
+Предположение:\\
+Пусть $n - 1$ последних элементов мы удачно перевернули и получили список:\\
+$xs' = push\; a_{2}( push\; a_{3}(...(push\; a_n\; nil)..) = cons\; a_{n}( cons\; a_{n-1}(...(cons\; a_2\; nil)..)$\\
+Переход:\\
+$xs = push\; a_1\; xs'\\
+= (\l x\; l \ar l\; cons\; (cons\; x\; nil))\; a_1\; xs' \;\\
+= xs'\; cons\; (cons\; a_1\; nil)\\
+= cons\; a_{n}( cons\; a_{n-1}(...(cons\; a_1\; nil)..)$
+
+(2 балла)
+
+\item (Опциональное). Напишите терм, вычисляющий n-ное число Фибоначчи. В этом задании нельзя пользоваться комбинатором неподвижной точки.\\
+$fib = \l n \ar snd (rec\; n\; (\l p x \ar (plus\; (fst\; p) (snd\; p), (fst\; p))) (\overline{1}, \overline{0}))$\\
+(2 балла)
+
+\end{MyList0}
+\end{document}

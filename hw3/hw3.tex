@@ -1,0 +1,278 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{euler}
+\usepackage{eulervm}
+\usepackage{graphics}
+\usepackage[all,cmtip]{xy}
+%\usepackage{diagxy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+
+
+\parskip=0em
+\parindent=0em
+
+\sloppy
+\voffset=-20mm
+\textheight=235mm
+\hoffset=-25mm
+\textwidth=180mm
+\headsep=12pt
+\footskip=20pt
+
+\setcounter{page}{0}
+\pagestyle{empty}
+
+% Основные математические символы
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\heart}{\mathalpha}{extraup}{86}
+\def\TODO{{\color{red}\bf TODO}}
+\def\N{\mathbb{N}}       %
+\def\R{\mathbb{R}}       %
+\def\Z{\mathbb{Z}}       %
+\def\INF{\t{+}\infty}    % +inf
+\def\EPS{\varepsilon}    %
+\def\EMPTY{\varnothing}  %
+\def\PHI{\varphi}        %
+\def\ar{\rightarrow}     % ->
+\def\l{\backslash}       % \
+\def\SO{\Rightarrow}     % =>
+\def\EQ{\Leftrightarrow} % <=>
+\def\t{\texttt}          % mono font
+\def\O{\mathcal{O}}      %
+\def\NO{\t{\#}}          % #
+\def\XOR{\text{ {\raisebox{-2pt}{\ensuremath{\Hat{}}}} }}
+\def\letus{%
+    \mathord{\setbox0=\hbox{$\exists$}%
+             \hbox{\kern 0.125\wd0%
+                   \vbox to \ht0{%
+                      \hrule width 0.75\wd0%
+                      \vfill%
+                      \hrule width 0.75\wd0}%
+                   \vrule height \ht0%
+                   \kern 0.125\wd0}%
+           }%
+}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\newcommand{\q}[1]{\langle #1 \rangle}               % <x>
+\newcommand\URL[1]{{\footnotesize{\url{#1}}}}        %
+\newcommand{\sfrac}[2]{{\scriptstyle\frac{#1}{#2}}}  % Очень маленькая дробь
+\newcommand{\mfrac}[2]{{\textstyle\frac{#1}{#2}}}    % Небольшая дробь
+
+\newcommand{\fix}[1]{{\color{red}#1}}
+
+\newcommand{\score}[1]{{\bf\color{red}{(#1)}}}
+
+% Отступы
+\def\makeparindent{\hspace*{\parindent}}
+\def\up{\vspace*{-0.3em}}
+\def\down{\vspace*{0.3em}}
+\def\LINE{\vspace*{-1em}\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}}
+%\def\up{\vspace*{-\baselineskip}}
+
+\lfoot{}
+\cfoot{\thepage\t{/}\pageref*{LastPage}}
+\rfoot{}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[1.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{MyList0}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{InnerMyList}[1][0pt]{
+  \vspace*{-0.5em}
+  \begin{enumerate}[a)]
+  \setlength{\parskip}{#1}
+  \setlength{\itemsep}{0pt}
+}{
+  \end{enumerate}
+}
+
+\newcommand{\Section}[1]{
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{\arabic{section}. #1} 
+  %{\LARGE \bf \arabic{section}. #1} 
+  {\LARGE \bf #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+\newcommand{\Subsection}[1]{
+  \refstepcounter{subsection}
+  \addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection}. #1} 
+  {\Large \bf \arabic{section}.\arabic{subsection}. #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+
+\newcommand{\lra}{\Longleftrightarrow}
+\newcommand{\ra}{\Longrightarrow}
+\newcommand{\ds}{\displaystyle}
+
+
+
+\newcommand{\ta}{\!\rightarrow\!}
+\newcommand{\tr}{\!:\!}
+\newcommand{\Tr}{:}
+
+% канонические комбинаторы Y, S, K, I, etc
+\newcommand{\canonComb}[1]{\boldsymbol{#1}}
+% обычные комбинаторы fac, mult, etc
+\newcommand{\comb}[1]{\mathtt{#1}} %% \mathsf
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\textbf{Курс: Функциональное программирование}
+
+\textbf{Домашнее задание 3}
+
+\textbf{Тигиной Марии 2 группа}
+\end{center}
+
+\bigskip
+
+\bigskip
+
+
+
+
+%-------------------------------------------------------------------------------------
+
+
+\begin{MyList}[8pt]
+
+\item Заселите типы:
+\begin{enumerate}[a)]
+\item $a \ar b \ar c \ar a$\\ 
+$\l a\; b\; c \ar a$\\
+(1 балл)
+\item $a \ar b \ar c \ar b$\\
+$\l a\; b\; c \ar b$\\
+(1 балл)
+\item $a \ar b \ar a \ar a$\\
+$\l a\;b\;c \ar c$\\
+$\l a\;b\;c \ar a$\\
+(1 балл)
+\item $a \ar a \ar a \ar a$\\
+$\l a\;b\;c \ar a$\\
+$\l a\;b\;c \ar b$\\
+$\l a\;b\;c \ar c$\\
+(1 балл)
+\end{enumerate}
+
+\item Найдите обитателей типов:
+\begin{enumerate}[a)]
+\item $(d  \ar d  \ar  a)  \ar  (a  \ar  b  \ar  c)  \ar  (d  \ar  b)  \ar  d  \ar  c$\\
+$f :\;d  \ar d  \ar  a$\\
+$g :\;a  \ar  b  \ar  c$\\
+$h :\;d  \ar  b$\\
+$\l f\;g\;h\;x \ar g\; (f\; x\; x) (h\;x)$\\
+(1,5 балла)
+
+\item $(d \ar d \ar a) \ar (c \ar a) \ar (a \ar b) \ar d \ar c \ar b$\\
+$f :\;d  \ar d  \ar  a$\\
+$g :\;c  \ar  a$\\
+$h :\;a  \ar  b$\\
+$\l f\;g\;h\;x\;y \ar h\; (f\; x\; x)$\\
+(1,5 балла)\\
+Сколько обитателей второго типа вы можете привести?\\
+Как минимум еще один:\\
+$\l f\;g\;h\;x\;y \ar h\; (g\; y)$\\
+\end{enumerate}\\
+
+
+\itemТипизируйте по Чёрчу :
+\begin{enumerate}[a)]
+\item $\canonComb{S}\,\canonComb{K}\,\canonComb{K}$\\
+$(\l f^{a \ar (b \ar a) \ar a}\; g^{a \ar b \ar a}\; x^{a} \ar f\; x\; (g\; x))(\l x^a\;y^{b\ar a} \ar x)(\l x^a\;y^b \ar x) \; :\; a \ar a$\\
+(1 балл)
+\item $\canonComb{S}\,\canonComb{K}\,\canonComb{I}$\\
+$(\l f^{a \ar a \ar a}\; g^{a \ar a}\; x^{a} \ar f\; x\; (g\; x))(\l x^a\;y^a\ar a} \ar x)(\l x^a \ar x) \; :\; a \ar a$\\
+(1 балл)
+\end{enumerate}
+
+\item Сконструируйте терм типа:\\
+$(c \ar e) \ar ((c \ar e) \ar e) \ar e$\\
+Которому нельзя было бы приписать тип:\\
+$a \ar (a \ar e) \ar e$\\
+$\l f^{c\ar e}\; g^{(c\ar e) \ar e}\; \ar g(\l c \ar gf)$\\
+(2 балла)
+
+\item Сконструируйте терм типа:
+\begin{enumerate}[a)]
+\item $ ((a \ar b) \ar a) \ar (a \ar a \ar b) \ar a$ \\
+$\l f\; g\; \ar f\;(\l a \ar g\; a\;a)$\\
+(2 балла)
+\item $ ((a \ar b) \ar a) \ar (a \ar a \ar b) \ar b$\\
+$\l f\; g\; \ar g\; (f\;(\l a \ar g\; a\;a))\; (f\;(\l a \ar g\; a\;a))$\\
+(2 балла)
+\item $ ((((a \ar b) \ar a) \ar a) \ar b) \ar b$ \\
+$p \;:\;a \ar b$\\
+$q\;:\;(a \ar b) \ar a$\\
+$q = \l p \ar (\l a \ar K\;a\;(p\;a)\;)$\\
+$h\;:\;((a \ar b) \ar a) \ar a$\\
+$h = \l q \ar(\l p \ar (\l a \ar K\;a\;(p(q\;p))\;))$\\
+$g\;:\;(((a \ar b) \ar a) \ar a) \ar b$\\
+$g = \l h \ar( \l q \ar(\l p \ar (\l a \ar K\; (p(h\;q))\;(p(q\;p))\;)))$\\
+$f\;:\;((((a \ar b) \ar a) \ar a) \ar b)\ar b$\\
+$f = \l g \ar (\l h \ar( \l q \ar(\l p \ar (\l a \ar K\; (g\;h)\;\; (K\;(p(h\;q))\;(K\; (p\;a) \;(p(q\;p))\;)\;)\;))))$
+
+Можно попробовать ещё так:\\
+$ ((((a \ar b) \ar a) \ar a) \ar b) \ar b$ \\
+$p \;:\;a \ar (a \ar a) = a \ar b$\\
+$q\;:\;(a \ar b) \ar a$\\
+$q = \l p \ar (\l a \ar (p\;a)\; a)$\\
+$h\;:\;((a \ar b) \ar a) \ar a$\\
+$h = \l q \ar(\l p \ar (\l a \ar (p(q\;p))((p\;a)a)\;))$\\
+$g\;:\;(((a \ar b) \ar a) \ar a) \ar b$\\
+$g = \l h \ar( \l q \ar(\l p \ar (\l a \ar p((p(h\;q))((p(q\;p))((p\;a)a))))))$\\
+$f\;:\;((((a \ar b) \ar a) \ar a) \ar b)\ar b$\\
+$f = \l g \ar (\l h \ar( \l q \ar(\l p \ar (\l a \ar (g\; h)((p(h\;q))((p(q\;p))((p\;a)a)))))))$\\
+(3 балла)
+\end{enumerate}\\
+
+\end{MyList0}
+\end{document}

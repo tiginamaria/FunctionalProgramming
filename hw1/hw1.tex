@@ -1,0 +1,279 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{euler}
+\usepackage{eulervm}
+\usepackage{graphics}
+\usepackage[all,cmtip]{xy}
+%\usepackage{diagxy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+
+
+\parskip=0em
+\parindent=0em
+
+\sloppy
+\voffset=-20mm
+\textheight=235mm
+\hoffset=-25mm
+\textwidth=180mm
+\headsep=12pt
+\footskip=20pt
+
+\setcounter{page}{0}
+\pagestyle{empty}
+
+% Основные математические символы
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\heart}{\mathalpha}{extraup}{86}
+\def\TODO{{\color{red}\bf TODO}}
+\def\N{\mathbb{N}}       %
+\def\R{\mathbb{R}}       %
+\def\Z{\mathbb{Z}}       %
+\def\INF{\t{+}\infty}    % +inf
+\def\EPS{\varepsilon}    %
+\def\EMPTY{\varnothing}  %
+\def\PHI{\varphi}        %
+\def\ar{\rightarrow}     % ->
+\def\l{\backslash}       % \
+\def\SO{\Rightarrow}     % =>
+\def\EQ{\Leftrightarrow} % <=>
+\def\t{\texttt}          % mono font
+\def\O{\mathcal{O}}      %
+\def\NO{\t{\#}}          % #
+\def\XOR{\text{ {\raisebox{-2pt}{\ensuremath{\Hat{}}}} }}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\newcommand{\q}[1]{\langle #1 \rangle}               % <x>
+\newcommand\URL[1]{{\footnotesize{\url{#1}}}}        %
+\newcommand{\sfrac}[2]{{\scriptstyle\frac{#1}{#2}}}  % Очень маленькая дробь
+\newcommand{\mfrac}[2]{{\textstyle\frac{#1}{#2}}}    % Небольшая дробь
+
+\newcommand{\fix}[1]{{\color{red}#1}}
+
+\newcommand{\score}[1]{{\bf\color{red}{(#1)}}}
+
+% Отступы
+\def\makeparindent{\hspace*{\parindent}}
+\def\up{\vspace*{-0.3em}}
+\def\down{\vspace*{0.3em}}
+\def\LINE{\vspace*{-1em}\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}}
+%\def\up{\vspace*{-\baselineskip}}
+
+\lfoot{}
+\cfoot{\thepage\t{/}\pageref*{LastPage}}
+\rfoot{}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[1.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{MyList0}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+\newenvironment{InnerMyList}[1][0pt]{
+  \vspace*{-0.5em}
+  \begin{enumerate}[a)]
+  \setlength{\parskip}{#1}
+  \setlength{\itemsep}{0pt}
+}{
+  \end{enumerate}
+}
+
+\newcommand{\Section}[1]{
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{\arabic{section}. #1} 
+  %{\LARGE \bf \arabic{section}. #1} 
+  {\LARGE \bf #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+\newcommand{\Subsection}[1]{
+  \refstepcounter{subsection}
+  \addcontentsline{toc}{subsection}{\arabic{section}.\arabic{subsection}. #1} 
+  {\Large \bf \arabic{section}.\arabic{subsection}. #1} 
+  \vspace*{1em}
+  \makeparindent\unskip
+}
+
+\newcommand{\lra}{\Longleftrightarrow}
+\newcommand{\ra}{\Longrightarrow}
+\newcommand{\ds}{\displaystyle}
+
+
+
+\newcommand{\ta}{\!\rightarrow\!}
+\newcommand{\tr}{\!:\!}
+\newcommand{\Tr}{:}
+
+% канонические комбинаторы Y, S, K, I, etc
+\newcommand{\canonComb}[1]{\boldsymbol{#1}}
+% обычные комбинаторы fac, mult, etc
+\newcommand{\comb}[1]{\mathtt{#1}} %% \mathsf
+
+\newenvironment{MyList}[1][4pt]{
+  \begin{enumerate}[0.]
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{#1}
+}{       
+  \end{enumerate}
+}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\textbf{Курс: Функциональное программирование}
+
+\textbf{Домашнее задание 1}
+
+\textbf{Тигиной Марии 2 группа}
+\end{center}
+
+\bigskip
+
+\bigskip
+
+
+
+
+%-------------------------------------------------------------------------------------
+
+
+\begin{MyList0}[8pt]
+
+\item Покажите, что:
+\begin{enumerate}[a)]
+\item \canonComb{I}=\canonComb{S}\,\canonComb{K}\,\canonComb{K}\\
+$\canonComb{S}\,\canonComb{K}\,\canonComb{K}\\
+=(\l xyz \ar xz(yz))KK \\
+= \l yz \ar Kz(yz) K \\
+= \l z \ar Kz(Kz)\\
+= \l z \ar (\l xy \ar x)z(Kz)\\
+= \l z \ar z\\
+= \canonComb{I}$
+
+(1 балл)\\
+
+\item \canonComb{K^*}=\canonComb{K}\,\canonComb{I} \\
+$\canonComb{K}\,\canonComb{I}\\
+= (\l xy \ar x)(\l z \ar z)\\
+= (\l y \ar (\l z \ar z))\\
+= (\l y z \ar z)\\
+=\canonComb{K^*}$
+
+(1 балл)\\
+\end{enumerate}
+\end{MyList0}
+
+\begin{MyList}[8pt]
+
+\item Выделите свободные и связанные переменные в термах и осуществите подстановки:\\
+(одним цветом выделены связанные вершины)
+\begin{enumerate}[a)]
+
+\item $x (\l xy \ar y (x w) u) y$  $[x := \l z \ar z]$\\
+$x(\l \textcolor{blue}{x} \textcolor{red}{y} \ar \textcolor{red}{y} (\textcolor{blue}{x} w) u) y$  $[x := \l z \ar z]$\\
+$(\l z \ar z) (\l \textcolor{blue}{x} \textcolor{red}{y} \ar \textcolor{red}{y} (\textcolor{blue}{x} w) u) y$\\
+(1 балл)\\
+
+\item $(\l x \ar x (\l y \ar y x) w) (\l x \ar v)$ $[w := y (\l v \ar v x)]$\\
+$(\l \textcolor{blue}{x} \ar \textcolor{blue}{x} (\l \textcolor{red}{y} \ar \textcolor{red}{y} \textcolor{blue}{x}) w) (\l x \ar v)$ $[w := y (\l v \ar v x)]$\\
+$(\l \textcolor{blue}{x} \ar \textcolor{blue}{x} (\l \textcolor{red}{y} \ar \textcolor{red}{y} \textcolor{blue}{x}) y (\l v \ar v x)) (\l x \ar v)$ \\
+(1 балл)
+\end{enumerate}
+
+
+\item Уберите лишние скобки и осуществите бета-преобразование(если это
+возможно):
+\begin{enumerate}[a)]
+\item $((\l x \ar (\l y \ar ((x y) z))) (a (b c)))$\\
+$(\l x y \ar x y z) (a (b c))$\\
+$\l y \ar a (b c) y z$\\
+(1 балл)\\
+
+\item $(((m n) m) (\l x \ar ((x (u v)) y))) $\\
+$m n m (\l x \ar x (u v) y) $\\
+(1 балл)\\
+
+\item $((\l x \ar (\l y \ar ((y x) x))) (x (x y)) y)$\\
+$(\l x \ar (\l y \ar y x x))(x (x y)) y$\\
+$(\l y \ar y (x (x y)) (x (x y))) y$\\
+$y (x (x y)) (x (x y))$\\
+(1 балл)
+
+\end{enumerate}
+
+\item Покажите, что:\\
+
+\canonComb{B}=\canonComb{S}\,(\canonComb{K}\,\canonComb{S})\,\canonComb{K}\\
+$\canonComb{S}\,(\canonComb{K}\,\canonComb{S})\,\canonComb{K}\\
+=(\l xyf \ar xz(yf))(KS)K\\
+= \l f \ar (KS)f(Kf)\\
+= \l f \ar KSf(Kf)\\
+= \l f \ar (\l x y \ar x )Sf(Kf)\\
+= \l f \ar (SKf)\\
+= \l f \ar (\l hgx \ar hx(gx))(Kf)\\
+= \l f \ar (\l gx \ar Kfx(gx))\\
+= \l fgx \ar f(gx)\\
+= \canonComb{B}$
+
+(2 балла)
+
+\item Напишите терм, ведущий себя как логическая связка xor\\
+$XOR =$ $\l b1$ $ b2 \ar b1$ ($NOT$ $b2)$ $b2$ $\ar b1$ $(b2$ $FALSE$ $TRUE$)  $b2$
+
+(1 балл)
+
+\item Напишите терм, возводящий число Чёрча в степень(b – это
+основание, а e – это показатель степени):\\
+$POW=$$ \l b$ $e \ar e\; b\;$\\
+(1 балла)
+
+\item Докажите дистрибутивность сложения относительно умножения для чисел Чёрча\\
+$PLUS = \l n m \ar n s(m s z)\\
+MULT = \l n m \ar n (m s) z\\
+MULT = \l n m \ar n (PLUS\; m) 0\\
+MULT\; a\; (PLUS\; b\; c) = PLUS\; (MULT\; a\; b)\; (MULT\; a\; c)$\\
+Достаточно посмотреть, какая кратность s( у результата этой опирации.\\
+1) сначала к z применяется $c$ раз s(\\
+2) затем еще $b$ раз, итого (b+c) раз s(\\
+3) дальше это применение повторяется a раз, итого a(b+c) s(\\
+4) так как a, b, c - целые, то a(b+c) - это тоже самое, что сначала применить ac, затем bc раз s(, что и есть формула для суммы произведений.
+
+
+
+(2 балла)
+
+\end{MyList0}
+\end{document}
